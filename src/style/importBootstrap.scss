@@ -3,7 +3,6 @@
 // Include any default variable overrides here
 
 $headings-font-family: "Kanit", sans-serif;
-$body-bg: rgb(207, 128, 68);
 $primary: #431e0b;
 
 @import "bootstrap/scss/variables";
@@ -21,6 +20,7 @@ $primary: #431e0b;
 @import "bootstrap/scss/grid";
 
 @import "bootstrap/scss/buttons";
+@import "bootstrap/scss/forms";
 
 @import "bootstrap/scss/helpers";
 @import "bootstrap/scss/utilities/api";
