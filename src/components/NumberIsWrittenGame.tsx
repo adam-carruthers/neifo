@@ -59,7 +59,7 @@ const NumberIsWrittenGame = ({ goToMenu }: Props) => {
   return (
     <div className="container">
       <div className="minh-vh d-flex flex-column justify-content-center align-items-center py-5">
-        <h1 className="mb-2">Number Is Written Game!</h1>
+        <h1 className="mb-2">Read the text, write the number!</h1>
 
         <div className="mb-5 fs-4">
           <i>
@@ -80,6 +80,7 @@ const NumberIsWrittenGame = ({ goToMenu }: Props) => {
             className="form-control form-control-lg mb-5 w-100"
             value={guess}
             onChange={(e) => setGuess(e.target.value)}
+            placeholder="Write the number here!"
           />
 
           <input
