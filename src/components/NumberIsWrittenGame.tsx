@@ -39,7 +39,7 @@ const NumberIsWrittenGame = ({ goToMenu }: Props) => {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (parseInt(guess) == currentStage.n) {
+    if (parseInt(guess) === currentStage.n) {
       alert("correct!");
     } else {
       alert(
