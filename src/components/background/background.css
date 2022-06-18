@@ -1,0 +1,7 @@
+.background-transition {
+  transition: background-color 1.5s;
+}
+
+.background-transition-fast {
+  transition-duration: 0.5s;
+}

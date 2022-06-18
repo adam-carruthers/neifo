@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
-import backgroundColorContext from "../other/backgroundColorContext";
+import backgroundColorContext from "../../other/backgroundColorContext";
 import classNames from "classnames";
+import "./background.css";
 
 interface InputProps {
   children: React.ReactNode;

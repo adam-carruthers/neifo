@@ -6,7 +6,7 @@ import "./style/index.scss";
 import Router from "./components/Router";
 
 import reportWebVitals from "./other/reportWebVitals";
-import Background from "./components/Background";
+import Background from "./components/background/Background";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
