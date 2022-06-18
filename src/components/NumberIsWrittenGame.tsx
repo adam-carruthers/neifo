@@ -1,5 +1,6 @@
-import React, { FormEvent, useMemo, useState } from "react";
+import React, { FormEvent, useContext, useMemo, useState } from "react";
 import num2wordsEs from "../num2words/es";
+import backgroundColorContext from "../other/backgroundColorContext";
 
 interface NumberStage {
   i: number;
@@ -36,22 +37,21 @@ const NumberIsWrittenGame = ({ goToMenu }: Props) => {
 
   const currentStage = stages[currentStageI];
 
+  const backgroundColor = useContext(backgroundColorContext);
+
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (parseInt(guess) === currentStage.n) {
-      alert("correct!");
+      backgroundColor.setColorFlash("var(--bs-success)");
     } else {
-      alert(
-        `not right this time, the answer for ${currentStage.text} was ${currentStage.n}`
-      );
+      backgroundColor.setColorFlash("var(--bs-danger)");
     }
 
     if (currentStageI < stages.length - 1) {
       setGuess("");
       setCurrentStageI(currentStageI + 1);
     } else {
-      alert("You finished the game!");
       goToMenu();
     }
   };
