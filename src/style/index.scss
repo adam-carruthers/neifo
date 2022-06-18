@@ -5,6 +5,10 @@
   min-height: 100vh;
 }
 
-body {
-  background-color: #cf8044;
+.background-transition {
+  transition: background-color 2s;
+}
+
+.background-transition-fast {
+  transition-duration: 0.5s;
 }

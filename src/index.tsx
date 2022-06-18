@@ -6,13 +6,16 @@ import "./style/index.scss";
 import Router from "./components/Router";
 
 import reportWebVitals from "./other/reportWebVitals";
+import Background from "./components/Background";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Router />
+    <Background>
+      <Router />
+    </Background>
   </React.StrictMode>
 );
 

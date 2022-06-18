@@ -3,11 +3,30 @@
 // Include any default variable overrides here
 
 $headings-font-family: "Kanit", sans-serif;
-$primary: #431e0b;
+$bronze: #cf8044;
+$brown: #431e0b;
 
 @import "bootstrap/scss/variables";
 
 // Include any default map overrides here
+
+$custom-colors: (
+  "bronze": $bronze,
+);
+
+$custom-theme-colors: (
+  "brown": $brown,
+);
+
+$colors: map-merge(
+  $map1: $colors,
+  $map2: $custom-colors,
+);
+
+$theme-colors: map-merge(
+  $map1: $theme-colors,
+  $map2: $custom-theme-colors,
+);
 
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
