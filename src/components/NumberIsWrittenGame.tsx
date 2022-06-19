@@ -1,6 +1,7 @@
 import React, { FormEvent, useContext, useMemo, useState } from "react";
 import num2wordsEs from "../num2words/es";
 import backgroundColorContext from "../other/backgroundColorContext";
+import CorrectAnswerPopUp from "./correctAnswerPopUp/CorrectAnswerPopUp";
 
 interface NumberStage {
   i: number;
@@ -35,9 +36,20 @@ const NumberIsWrittenGame = ({ goToMenu }: Props) => {
 
   const [guess, setGuess] = useState("");
 
+  const [correctAnswerMessage, setCorrectAnswerMessage] =
+    useState<NumberStage | null>(null);
+
   const currentStage = stages[currentStageI];
 
   const backgroundColor = useContext(backgroundColorContext);
+
+  const flashCorrectAnswer = (stage: NumberStage) => {
+    setCorrectAnswerMessage(stage);
+
+    setTimeout(() => {
+      setCorrectAnswerMessage(null);
+    }, 3000);
+  };
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,13 +58,14 @@ const NumberIsWrittenGame = ({ goToMenu }: Props) => {
       backgroundColor.setColorFlash("var(--bs-success)");
     } else {
       backgroundColor.setColorFlash("var(--bs-danger)");
+      flashCorrectAnswer(currentStage);
     }
 
     if (currentStageI < stages.length - 1) {
       setGuess("");
       setCurrentStageI(currentStageI + 1);
     } else {
-      goToMenu();
+      setTimeout(goToMenu, 4000);
     }
   };
 
@@ -94,6 +107,12 @@ const NumberIsWrittenGame = ({ goToMenu }: Props) => {
           Go back
         </button>
       </div>
+      {correctAnswerMessage && (
+        <CorrectAnswerPopUp>
+          <b>{correctAnswerMessage.text}</b> is actually{" "}
+          <b>{correctAnswerMessage.n}</b>
+        </CorrectAnswerPopUp>
+      )}
     </div>
   );
 };

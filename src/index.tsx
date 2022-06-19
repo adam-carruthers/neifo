@@ -7,6 +7,7 @@ import Router from "./components/Router";
 
 import reportWebVitals from "./other/reportWebVitals";
 import Background from "./components/background/Background";
+import CorrectAnswerPopUp from "./components/correctAnswerPopUp/CorrectAnswerPopUp";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
