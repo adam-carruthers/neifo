@@ -1,49 +1,31 @@
-import React, { FormEvent, useContext, useMemo, useState } from "react";
-import num2wordsEs from "../num2words/es";
+import React, { FormEvent, useContext, useState } from "react";
 import backgroundColorContext from "../other/backgroundColorContext";
 import CorrectAnswerPopUp from "./correctAnswerPopUp/CorrectAnswerPopUp";
 
-interface NumberStage {
+export interface Stage {
   i: number;
-  n: number;
-  text: string;
+  textToShow: string;
+  correctAnswer: string;
 }
-
-const N_STAGES = 5;
-const MIN_NUMBER = -10000;
-const MAX_NUMBER = 10000;
-
-const generateStages = (): NumberStage[] => {
-  const randomNumbers: number[] = [];
-  for (let index = 0; index < N_STAGES; index++) {
-    const randomNumber = Math.round(
-      Math.random() * (MAX_NUMBER - MIN_NUMBER) + MIN_NUMBER
-    );
-    randomNumbers.push(randomNumber);
-  }
-
-  return randomNumbers.map((n, i) => ({ n, i, text: num2wordsEs(n) }));
-};
 
 interface Props {
   goToMenu: () => void;
+  stages: Stage[];
 }
 
-const NumberIsWrittenGame = ({ goToMenu }: Props) => {
-  const stages: NumberStage[] = useMemo(generateStages, []);
-
+const GenericGame = ({ goToMenu, stages }: Props) => {
   const [currentStageI, setCurrentStageI] = useState(0);
 
   const [guess, setGuess] = useState("");
 
   const [correctAnswerMessage, setCorrectAnswerMessage] =
-    useState<NumberStage | null>(null);
+    useState<Stage | null>(null);
 
   const currentStage = stages[currentStageI];
 
   const backgroundColor = useContext(backgroundColorContext);
 
-  const flashCorrectAnswer = (stage: NumberStage) => {
+  const flashCorrectAnswer = (stage: Stage) => {
     setCorrectAnswerMessage(stage);
 
     setTimeout(() => {
@@ -54,7 +36,7 @@ const NumberIsWrittenGame = ({ goToMenu }: Props) => {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (parseInt(guess) === currentStage.n) {
+    if (guess === currentStage.correctAnswer) {
       backgroundColor.setColorFlash("var(--bs-success)");
     } else {
       backgroundColor.setColorFlash("var(--bs-danger)");
@@ -81,7 +63,7 @@ const NumberIsWrittenGame = ({ goToMenu }: Props) => {
         </div>
 
         <div style={{ fontSize: "3em" }} className="mb-5">
-          {currentStage.text}
+          {currentStage.textToShow}
         </div>
 
         <form
@@ -109,12 +91,12 @@ const NumberIsWrittenGame = ({ goToMenu }: Props) => {
       </div>
       {correctAnswerMessage && (
         <CorrectAnswerPopUp>
-          <b>{correctAnswerMessage.text}</b> is actually{" "}
-          <b>{correctAnswerMessage.n}</b>
+          <b>{correctAnswerMessage.textToShow}</b> is actually{" "}
+          <b>{correctAnswerMessage.correctAnswer}</b>
         </CorrectAnswerPopUp>
       )}
     </div>
   );
 };
 
-export default NumberIsWrittenGame;
+export default GenericGame;

@@ -2,18 +2,28 @@ import React, { useContext } from "react";
 import backgroundColorContext from "../other/backgroundColorContext";
 
 interface Props {
-  goToGame: () => void;
+  goToReadNAnswerTextGame: () => void;
+  goToReadTextAnswerNGame: () => void;
 }
 
-const Menu = ({ goToGame }: Props) => {
+const Menu = ({ goToReadNAnswerTextGame, goToReadTextAnswerNGame }: Props) => {
   const backgroundColor = useContext(backgroundColorContext);
 
   return (
     <div className="container">
       <div className="minh-vh d-flex flex-column justify-content-center align-items-center py-5">
         <h1 className="mb-5">Neifo</h1>
-        <button className="btn btn-dark btn-lg mb-2" onClick={goToGame}>
-          Start Game
+        <button
+          className="btn btn-dark btn-lg mb-2"
+          onClick={goToReadNAnswerTextGame}
+        >
+          Start Read Number Answer Text Game
+        </button>
+        <button
+          className="btn btn-dark btn-lg mb-2"
+          onClick={goToReadTextAnswerNGame}
+        >
+          Start Read Text Answer Number Game
         </button>
         <button
           className="btn btn-dark btn-lg"

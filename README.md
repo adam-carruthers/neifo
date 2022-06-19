@@ -13,6 +13,7 @@ This site aims to force you to grapple with numbers in the foreign language, to 
 ## Aspirations
 
 - [x] Game where you type the number after reading the text of the number
+- [x] Game where you type the text of the number after reading the number
 - [ ] Game where you type the number after hearing the number
 - [ ] Game where you do maths after reading the numbers
 - [ ] Game where you do maths after hearing the numbers
