@@ -1,42 +1,20 @@
 import React, { useState } from "react";
-import ReadTextAnswerNGame from "./ReadTextAnswerNGame";
 import Menu from "./Menu";
-import ReadNAnswerTextGame from "./ReadNAnswerTextGame";
-import ReadMathsAnswerNGame from "./ReadMathsAnswerNGame";
+import allGames from "./allGames";
 
-type RouterLocation =
-  | "readNAnswerTextGame"
-  | "readTextAnswerNGame"
-  | "readMathsAnswerNGame"
-  | "menu";
+type RouterLocation = "menu" | keyof typeof allGames;
 
 const Router = () => {
   const [location, setLocation] = useState<RouterLocation>("menu");
 
-  const goToReadTextAnswerNGame = () => setLocation("readTextAnswerNGame");
-  const goToReadNAnswerTextGame = () => setLocation("readNAnswerTextGame");
-  const goToReadMathsAnswerNGame = () => setLocation("readMathsAnswerNGame");
   const goToMenu = () => setLocation("menu");
 
-  switch (location) {
-    case "menu":
-      return (
-        <Menu
-          goToReadNAnswerTextGame={goToReadNAnswerTextGame}
-          goToReadTextAnswerNGame={goToReadTextAnswerNGame}
-          goToReadMathsAnswerNGame={goToReadMathsAnswerNGame}
-        />
-      );
-    case "readTextAnswerNGame":
-      return <ReadTextAnswerNGame goToMenu={goToMenu} />;
-    case "readNAnswerTextGame":
-      return <ReadNAnswerTextGame goToMenu={goToMenu} />;
-    case "readMathsAnswerNGame":
-      return <ReadMathsAnswerNGame goToMenu={goToMenu} />;
-    default:
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const _exhaustiveCheck: never = location;
-      return <>ERROR</>;
+  if (location === "menu") {
+    return <Menu setLocation={setLocation} />;
+  } else {
+    const CurrentGame = allGames[location].component;
+
+    return <CurrentGame goToMenu={goToMenu} />;
   }
 };
 

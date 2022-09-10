@@ -7,7 +7,7 @@ const N_STAGES = 5;
 const MIN_NUMBER = -100;
 const MAX_NUMBER = 100;
 
-const generateStages = (): Stage[] => {
+export const generateStages = (): Stage[] => {
   const stages: Stage[] = [];
 
   for (let i = 0; i < N_STAGES; i++) {

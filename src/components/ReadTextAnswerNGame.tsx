@@ -8,17 +8,19 @@ const MIN_NUMBER = -10000;
 const MAX_NUMBER = 10000;
 
 const generateStages = (): Stage[] => {
-  const randomNumbers: number[] = [];
-  for (let index = 0; index < N_STAGES; index++) {
+  const stages: Stage[] = [];
+
+  for (let i = 0; i < N_STAGES; i++) {
     const randomNumber = generateRandomInteger(MIN_NUMBER, MAX_NUMBER);
-    randomNumbers.push(randomNumber);
+
+    stages.push({
+      i,
+      textToShow: num2wordsEs(randomNumber),
+      correctAnswer: randomNumber.toString(),
+    });
   }
 
-  return randomNumbers.map((n, i) => ({
-    i,
-    textToShow: num2wordsEs(n),
-    correctAnswer: n.toString(),
-  }));
+  return stages;
 };
 
 interface Props {
