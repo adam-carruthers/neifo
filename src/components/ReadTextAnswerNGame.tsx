@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { generateRandomInteger } from "../maths";
 import num2wordsEs from "../num2words/es";
 import GenericGame, { Stage } from "./GenericGame";
 
@@ -9,9 +10,7 @@ const MAX_NUMBER = 10000;
 const generateStages = (): Stage[] => {
   const randomNumbers: number[] = [];
   for (let index = 0; index < N_STAGES; index++) {
-    const randomNumber = Math.round(
-      Math.random() * (MAX_NUMBER - MIN_NUMBER) + MIN_NUMBER
-    );
+    const randomNumber = generateRandomInteger(MIN_NUMBER, MAX_NUMBER);
     randomNumbers.push(randomNumber);
   }
 

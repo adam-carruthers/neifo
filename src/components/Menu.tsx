@@ -4,9 +4,14 @@ import backgroundColorContext from "../other/backgroundColorContext";
 interface Props {
   goToReadNAnswerTextGame: () => void;
   goToReadTextAnswerNGame: () => void;
+  goToReadMathsAnswerNGame: () => void;
 }
 
-const Menu = ({ goToReadNAnswerTextGame, goToReadTextAnswerNGame }: Props) => {
+const Menu = ({
+  goToReadNAnswerTextGame,
+  goToReadTextAnswerNGame,
+  goToReadMathsAnswerNGame,
+}: Props) => {
   const backgroundColor = useContext(backgroundColorContext);
 
   return (
@@ -24,6 +29,12 @@ const Menu = ({ goToReadNAnswerTextGame, goToReadTextAnswerNGame }: Props) => {
           onClick={goToReadTextAnswerNGame}
         >
           Start Read Text Answer Number Game
+        </button>
+        <button
+          className="btn btn-dark btn-lg mb-2"
+          onClick={goToReadMathsAnswerNGame}
+        >
+          Start Read Maths Answer Number Game
         </button>
         <button
           className="btn btn-dark btn-lg"

@@ -6,6 +6,7 @@ export interface Stage {
   i: number;
   textToShow: string;
   correctAnswer: string;
+  extraHint?: string;
 }
 
 interface Props {
@@ -30,7 +31,7 @@ const GenericGame = ({ goToMenu, stages }: Props) => {
 
     setTimeout(() => {
       setCorrectAnswerMessage(null);
-    }, 3000);
+    }, 8000);
   };
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -62,7 +63,7 @@ const GenericGame = ({ goToMenu, stages }: Props) => {
           </i>
         </div>
 
-        <div style={{ fontSize: "3em" }} className="mb-5">
+        <div style={{ fontSize: "3em", textAlign: "center" }} className="mb-5">
           {currentStage.textToShow}
         </div>
 
@@ -91,8 +92,10 @@ const GenericGame = ({ goToMenu, stages }: Props) => {
       </div>
       {correctAnswerMessage && (
         <CorrectAnswerPopUp>
-          <b>{correctAnswerMessage.textToShow}</b> is actually{" "}
-          <b>{correctAnswerMessage.correctAnswer}</b>
+          <b>{correctAnswerMessage.textToShow}</b>
+          {correctAnswerMessage.extraHint &&
+            ` (${correctAnswerMessage.extraHint})`}{" "}
+          is actually <b>{correctAnswerMessage.correctAnswer}</b>
         </CorrectAnswerPopUp>
       )}
     </div>
