@@ -15,7 +15,7 @@ This site aims to force you to grapple with numbers in the foreign language, to 
 - [x] Game where you type the number after reading the text of the number
 - [x] Game where you type the text of the number after reading the number
 - [x] Game where you do maths after reading the numbers
-- [ ] Game where you type the number after hearing the number
+- [x] Game where you type the number after hearing the number
 - [ ] Game where you do maths after hearing the numbers
 - [ ] Make the UI in more langages than just english
 - [ ] Add more learning languages than just spanish

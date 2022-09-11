@@ -1,3 +1,4 @@
+import ListenNAnswerNGame from "./ListenNAnswerNGame";
 import ReadMathsAnswerNGame from "./ReadMathsAnswerNGame";
 import ReadMathsAnswerTextGame from "./ReadMathsAnswerTextGame";
 import ReadNAnswerTextGame from "./ReadNAnswerTextGame";
@@ -21,6 +22,10 @@ const allGames = {
   readMathsAnswerTextGame: {
     component: ReadMathsAnswerTextGame,
     name: "Read Maths Answer Text Game",
+  },
+  listenTextAnswerNGame: {
+    component: ListenNAnswerNGame,
+    name: "Listen Number Answer Number Game",
   },
 };
 
