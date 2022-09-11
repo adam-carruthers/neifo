@@ -14,7 +14,9 @@ const Router = () => {
   } else {
     const CurrentGame = allGames[location].component;
 
-    return <CurrentGame goToMenu={goToMenu} />;
+    return (
+      <CurrentGame goToMenu={goToMenu} gameName={allGames[location].name} />
+    );
   }
 };
 

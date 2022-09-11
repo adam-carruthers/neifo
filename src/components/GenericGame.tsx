@@ -1,26 +1,32 @@
-import React, { FormEvent, useContext, useState } from "react";
+import React, { FormEvent, useContext, useMemo, useState } from "react";
 import backgroundColorContext from "../other/backgroundColorContext";
+import Stage, { GenerateStagesFunction } from "../stages/stage";
 import CorrectAnswerPopUp from "./correctAnswerPopUp/CorrectAnswerPopUp";
+import { GameComponent, GameProps } from "./gameComponentTypes";
+import ListenQuestion from "./ListenQuestion";
 
-export interface Stage {
-  i: number;
-  question: string;
-  correctAnswer: string;
-  extraHint?: string;
+interface QuestionMethodDefinedProps extends GameProps {
+  generateStagesFunction: GenerateStagesFunction;
 }
 
-interface Props {
-  goToMenu: () => void;
-  stages: Stage[];
+interface GenericGameProps extends QuestionMethodDefinedProps {
+  questionDisplay: (question: string) => React.ReactNode;
 }
 
-const GenericGame = ({ goToMenu, stages }: Props) => {
+const GenericGame = ({
+  goToMenu,
+  generateStagesFunction,
+  questionDisplay,
+  gameName,
+}: GenericGameProps) => {
   const [currentStageI, setCurrentStageI] = useState(0);
 
   const [guess, setGuess] = useState("");
 
   const [correctAnswerMessage, setCorrectAnswerMessage] =
     useState<Stage | null>(null);
+
+  const stages = useMemo(generateStagesFunction, [generateStagesFunction]);
 
   const currentStage = stages[currentStageI];
 
@@ -55,7 +61,7 @@ const GenericGame = ({ goToMenu, stages }: Props) => {
   return (
     <div className="container">
       <div className="minh-vh d-flex flex-column justify-content-center align-items-center py-5">
-        <h1 className="mb-2">Read the text, write the number!</h1>
+        <h1 className="mb-2">{gameName}</h1>
 
         <div className="mb-5 fs-4">
           <i>
@@ -64,7 +70,7 @@ const GenericGame = ({ goToMenu, stages }: Props) => {
         </div>
 
         <div style={{ fontSize: "3em", textAlign: "center" }} className="mb-5">
-          {currentStage.question}
+          {questionDisplay(currentStage.question)}
         </div>
 
         <form
@@ -102,4 +108,33 @@ const GenericGame = ({ goToMenu, stages }: Props) => {
   );
 };
 
-export default GenericGame;
+export type QuestionMethodDefinedGenericGameComponent = (
+  props: QuestionMethodDefinedProps
+) => JSX.Element;
+
+export const GenericReadGame: QuestionMethodDefinedGenericGameComponent = (
+  props
+) => <GenericGame questionDisplay={(question) => question} {...props} />;
+
+export const GenericListenGame: QuestionMethodDefinedGenericGameComponent = (
+  props
+) => (
+  <GenericGame
+    questionDisplay={(question) => <ListenQuestion question={question} />}
+    {...props}
+  />
+);
+
+export const makeGameComponent =
+  (
+    generateStagesFunction: GenerateStagesFunction,
+    QuestionMethodDefinedGenericGameComponent: QuestionMethodDefinedGenericGameComponent
+  ): GameComponent =>
+  (gameProps: GameProps) => {
+    return (
+      <QuestionMethodDefinedGenericGameComponent
+        generateStagesFunction={generateStagesFunction}
+        {...gameProps}
+      />
+    );
+  };
