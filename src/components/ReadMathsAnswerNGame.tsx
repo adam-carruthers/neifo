@@ -22,7 +22,7 @@ export const generateStages = (): Stage[] => {
 
     stages.push({
       i,
-      textToShow,
+      question: textToShow,
       correctAnswer,
       extraHint,
     });

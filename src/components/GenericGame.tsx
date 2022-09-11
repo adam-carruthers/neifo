@@ -4,7 +4,7 @@ import CorrectAnswerPopUp from "./correctAnswerPopUp/CorrectAnswerPopUp";
 
 export interface Stage {
   i: number;
-  textToShow: string;
+  question: string;
   correctAnswer: string;
   extraHint?: string;
 }
@@ -64,7 +64,7 @@ const GenericGame = ({ goToMenu, stages }: Props) => {
         </div>
 
         <div style={{ fontSize: "3em", textAlign: "center" }} className="mb-5">
-          {currentStage.textToShow}
+          {currentStage.question}
         </div>
 
         <form
@@ -92,7 +92,7 @@ const GenericGame = ({ goToMenu, stages }: Props) => {
       </div>
       {correctAnswerMessage && (
         <CorrectAnswerPopUp>
-          <b>{correctAnswerMessage.textToShow}</b>
+          <b>{correctAnswerMessage.question}</b>
           {correctAnswerMessage.extraHint &&
             ` (${correctAnswerMessage.extraHint})`}{" "}
           is actually <b>{correctAnswerMessage.correctAnswer}</b>

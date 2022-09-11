@@ -14,7 +14,7 @@ const generateStages = (): Stage[] => {
     const randomNumber = generateRandomInteger(MIN_NUMBER, MAX_NUMBER);
     stages.push({
       i,
-      textToShow: randomNumber.toString(),
+      question: randomNumber.toString(),
       correctAnswer: num2wordsEs(randomNumber),
     });
   }

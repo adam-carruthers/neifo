@@ -15,7 +15,7 @@ const generateStages = (): Stage[] => {
 
     stages.push({
       i,
-      textToShow: num2wordsEs(randomNumber),
+      question: num2wordsEs(randomNumber),
       correctAnswer: randomNumber.toString(),
     });
   }
